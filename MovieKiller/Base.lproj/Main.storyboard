@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="v48-aP-YuA">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="lT9-Ra-yyW">
+            <objects>
+                <viewController id="v48-aP-YuA" customClass="ViewController" customModule="MovieKiller" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ztE-h0-jY2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kU5-aa-gMJ">
+                                <rect key="frame" x="0.0" y="44" width="324" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="mcU-9K-B6H"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fPd-uL-zkk">
+                                <rect key="frame" x="0.0" y="84" width="414" height="778"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pxp-ra-gfp">
+                                <rect key="frame" x="332" y="44" width="74" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Button">
+                                    <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="medium"/>
+                                </state>
+                                <connections>
+                                    <action selector="searchButton:" destination="v48-aP-YuA" eventType="touchUpInside" id="3FR-Pa-5Uh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BrB-ea-tEf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fPd-uL-zkk" firstAttribute="leading" secondItem="BrB-ea-tEf" secondAttribute="leading" id="MgE-h5-YpQ"/>
+                            <constraint firstItem="fPd-uL-zkk" firstAttribute="top" secondItem="kU5-aa-gMJ" secondAttribute="bottom" id="aDu-vm-WLn"/>
+                            <constraint firstItem="kU5-aa-gMJ" firstAttribute="top" secondItem="BrB-ea-tEf" secondAttribute="top" id="eqn-Ka-D34"/>
+                            <constraint firstItem="kU5-aa-gMJ" firstAttribute="leading" secondItem="BrB-ea-tEf" secondAttribute="leading" id="ht6-Ny-hfR"/>
+                            <constraint firstItem="BrB-ea-tEf" firstAttribute="trailing" secondItem="Pxp-ra-gfp" secondAttribute="trailing" id="keQ-R0-TBt"/>
+                            <constraint firstItem="Pxp-ra-gfp" firstAttribute="top" secondItem="BrB-ea-tEf" secondAttribute="top" id="lWo-JO-Nqx"/>
+                            <constraint firstItem="Pxp-ra-gfp" firstAttribute="leading" secondItem="kU5-aa-gMJ" secondAttribute="trailing" id="n97-4n-BVV"/>
+                            <constraint firstItem="BrB-ea-tEf" firstAttribute="bottom" secondItem="fPd-uL-zkk" secondAttribute="bottom" id="oHl-eV-bVd"/>
+                            <constraint firstItem="BrB-ea-tEf" firstAttribute="trailing" secondItem="fPd-uL-zkk" secondAttribute="trailing" id="tMh-2H-6MR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="myTableView" destination="fPd-uL-zkk" id="fkl-ti-b0p"/>
+                        <outlet property="searchButton" destination="Pxp-ra-gfp" id="Fwu-Yv-Vfz"/>
+                        <outlet property="searchInput" destination="kU5-aa-gMJ" id="sLT-Se-fbn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OIV-35-DGU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-317.39130434782612" y="47.544642857142854"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
