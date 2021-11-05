@@ -12,10 +12,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var url = URL(string: "https://www.omdbapi.com/?s=Movie&page=1&apikey=e238f827")
     
     @IBAction func searchButton(_ sender: Any) {
-        let input = searchInput.text
+        let input = self.searchInput.text
         let value = "Movie"
         url = URL(string: "https://www.omdbapi.com/?s=\(input ?? value)&page=1&apikey=e238f827")
-        
+        getMovies(url: url)
     }
     @IBOutlet weak var searchInput: UITextField!
 
@@ -28,28 +28,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.myTableView.delegate = self
         self.myTableView.dataSource = self
         self.myTableView.register(UINib(nibName: "MovieTableViewCell", bundle: nil), forCellReuseIdentifier: "MovieTableViewCell")
-         
         
-
-        if let url = url {
-            URLSession.shared.dataTask(with: url) {data,_,error in
-                if let error = error {
-                    print("Error occured : \(error)")
-                }
-                if let data = data {
-                    do{
-                        let decoder = JSONDecoder()
-                        self.search = try decoder.decode(Search.self, from: data)
-                        DispatchQueue.main.async {
-                            self.myTableView.reloadData()
-                        }
-                        //NSLog("\(self.search)")
-                    }catch let error {
-                        print("Unknown Error : \(error)")
-                    }
-                }
-            }.resume()
-        }
+        getMovies(url: self.url)
+              
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,6 +38,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return search.movie.count
         }
          return 0
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "SecondViewController") as? SecondViewController
+        if let secondViewController = secondViewController{
+            self.navigationController?.pushViewController(secondViewController, animated: true)
+        }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -69,6 +58,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
         return UITableViewCell()
+    }
+    
+    func getMovies( url : URL? ){
+        if let url = url {
+            URLSession.shared.dataTask(with: url) {data,_,error in
+                if let error = error {
+                    print("Error occured : \(error)")
+                }
+                if let data = data {
+                    do{
+                        let decoder = JSONDecoder()
+                        self.search = try decoder.decode(Search.self, from: data)
+                        DispatchQueue.main.async {
+                            self.myTableView.reloadData()
+                        }
+                    }catch let error {
+                        print("Unknown Error : \(error)")
+                    }
+                }
+            }.resume()
+        }
     }
 }
 

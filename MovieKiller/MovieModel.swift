@@ -24,7 +24,7 @@ struct Search: Codable {
     }
     
     func encode(to encoder: Encoder) throws {
-        var container = try encoder.container(keyedBy: SearchCodingKeys.self)
+        var container = encoder.container(keyedBy: SearchCodingKeys.self)
         try container.encode(self.movie, forKey: .search)
     }
 }
@@ -56,7 +56,7 @@ struct Movie : Codable{
     }
 
     func encode(to encoder: Encoder) throws {
-        var container = try encoder.container(keyedBy: MovieCodingKeys.self)
+        var container = encoder.container(keyedBy: MovieCodingKeys.self)
         try container.encode(self.title, forKey: .title)
         try container.encode(self.year, forKey: .year)
         try container.encode(self.poster, forKey: .poster)
