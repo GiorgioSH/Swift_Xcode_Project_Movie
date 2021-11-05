@@ -9,13 +9,16 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    var url = URL(string: "https://www.omdbapi.com/?s=Movie&page=1&apikey=e238f827")
     
     @IBAction func searchButton(_ sender: Any) {
-        
+        let input = searchInput.text
+        let value = "Movie"
+        url = URL(string: "https://www.omdbapi.com/?s=\(input ?? value)&page=1&apikey=e238f827")
         
     }
     @IBOutlet weak var searchInput: UITextField!
-        
+
     @IBOutlet weak var myTableView: UITableView!
     
     var search : Search?
@@ -26,7 +29,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.myTableView.dataSource = self
         self.myTableView.register(UINib(nibName: "MovieTableViewCell", bundle: nil), forCellReuseIdentifier: "MovieTableViewCell")
          
-        let url = URL(string: "https://www.omdbapi.com/?s=Movie&page=1&apikey=e238f827")
+        
 
         if let url = url {
             URLSession.shared.dataTask(with: url) {data,_,error in
